@@ -2,7 +2,7 @@
 
 # Django project for consumerfinance.gov
 
-This will be the top-level "project" for containing and running our Django apps. This mostly useful for developers who want to replicate consumerfinance.gov locally during development.
+This will be the top-level "project" for containing and running our Django apps. This will mostly useful for developers who want to replicate consumerfinance.gov locally during development.
 
 ## Status
 
