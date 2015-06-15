@@ -4,6 +4,10 @@
 
 This will be the top-level "project" for containing and running our Django apps. This mostly useful for developers who want to replicate consumerfinance.gov locally during development.
 
+## Status
+
+Right now, we're using this project to experiment with different configuration ideas and deployment options as we plan to migrate to Django 1.8. It it not presently useful for any purpose.
+
 ## Dependencies
 
 Our initial target is Python 2.7 and Django 1.8.
