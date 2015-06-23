@@ -1,0 +1,5 @@
+unipath==1.1
+django>=1.8,<=1.9
+-e git+https://github.com/rosskarchner/django-sheerlike.git#egg=sheerlike
+six==1.9.0
+python-dateutil==2.4.2

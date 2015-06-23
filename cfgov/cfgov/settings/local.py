@@ -12,8 +12,11 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+from unipath import Path
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+CFGOV_REFRESH = Path(__file__).ancestor(5).child('cfgov-refresh')
 
 
 # Quick-start development settings - unsuitable for production
@@ -70,9 +73,9 @@ TEMPLATES = [
 {
         'BACKEND': 'django.template.backends.jinja2.Jinja2',
         'DIRS': [
-            '/Users/karchnerr/projects/cfgov-refresh/_layouts',
-            '/Users/karchnerr/projects/cfgov-refresh/_includes',
-            '/Users/karchnerr/projects/cfgov-refresh',
+            CFGOV_REFRESH.child('_layouts'),
+            CFGOV_REFRESH.child('_includes'),
+            CFGOV_REFRESH,
         ],
         'OPTIONS':{
             'environment':'sheerlike.environment'
@@ -114,11 +117,11 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
-        '/Users/karchnerr/projects/cfgov-refresh/static/',
+        CFGOV_REFRESH.child('static'),
         )
 
 
 
 SHEER_ELASTICSEARCH_SERVER = 'localhost:9200'
 SHEER_ELASTICSEARCH_INDEX = 'content'
-SHEER_QUERIES_DIRS = ['/Users/karchnerr/projects/cfgov-refresh/_queries',]
+SHEER_QUERIES_DIRS = [CFGOV_REFRESH.child('_queries')]
