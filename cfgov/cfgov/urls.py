@@ -5,6 +5,7 @@ from django.views.generic.base import RedirectView, TemplateView
 from sheerlike.views.generic import SheerDetailView
 
 urlpatterns = [
+    url(r'^$', TemplateView.as_view(template_name='index.html'), name='home'),
     url(r'^blog/', include([
         url(r'^$', TemplateView.as_view(template_name='blog/index.html'),
                    name='index'), 
