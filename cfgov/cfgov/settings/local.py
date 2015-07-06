@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'sheerlike',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -72,11 +73,6 @@ TEMPLATES = [
     },
 {
         'BACKEND': 'django.template.backends.jinja2.Jinja2',
-        'DIRS': [
-            CFGOV_REFRESH.child('_layouts'),
-            CFGOV_REFRESH.child('_includes'),
-            CFGOV_REFRESH,
-        ],
         'OPTIONS':{
             'environment':'sheerlike.environment'
         }
@@ -116,12 +112,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = (
-        CFGOV_REFRESH.child('static'),
-        )
 
 
-
+SHEER_SITES=[CFGOV_REFRESH]
 SHEER_ELASTICSEARCH_SERVER = 'localhost:9200'
 SHEER_ELASTICSEARCH_INDEX = 'content'
-SHEER_QUERIES_DIRS = [CFGOV_REFRESH.child('_queries')]
