@@ -34,6 +34,12 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'cfgov.urls'
 
 TEMPLATES = [
+{
+        'BACKEND': 'django.template.backends.jinja2.Jinja2',
+        'OPTIONS':{
+            'environment':'sheerlike.environment'
+        }
+    },
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [],
@@ -46,13 +52,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
             ],
         },
-    },
-{
-        'BACKEND': 'django.template.backends.jinja2.Jinja2',
-        'OPTIONS':{
-            'environment':'sheerlike.environment'
-        }
-    },
+    }
 ]
 
 WSGI_APPLICATION = 'cfgov.wsgi.application'
