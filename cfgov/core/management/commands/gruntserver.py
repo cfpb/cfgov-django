@@ -8,6 +8,10 @@ from django.contrib.staticfiles.management.commands.runserver import Command\
     as StaticfilesRunserverCommand
 
 
+# Inspired by:
+# https://lincolnloop.com/blog/simplifying-your-django-frontend-tasks-grunt/
+# Extended to potentially support multiple grunt-watched directories.
+
 class Command(StaticfilesRunserverCommand):
 
     def inner_run(self, *args, **options):
