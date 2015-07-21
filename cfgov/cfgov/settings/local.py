@@ -4,6 +4,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 CFGOV_REFRESH = Path(__file__).ancestor(5).child('cfgov-refresh')
 
+GRUNT_WATCH = [CFGOV_REFRESH]
+
 DEBUG = True
 
 
