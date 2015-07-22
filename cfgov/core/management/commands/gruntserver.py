@@ -35,9 +35,9 @@ class Command(StaticfilesRunserverCommand):
 
             self.stdout.write('>>> Grunt process on pid {0}'.format(sub.pid))
 
-        def kill_grunt_processes(pids):
-            for pid in pids: 
-                self.stdout.write('>>> Closing grunt process %s' % pid)
-                os.kill(pid, signal.SIGTERM)
+        def kill_grunt_processes(processes):
+            for process in processes: 
+                self.stdout.write('>>> Closing grunt process %s' % process.pid)
+                os.kill(process.pid, signal.SIGTERM)
 
         atexit.register(kill_grunt_processes, self.grunt_processes)
