@@ -84,6 +84,15 @@ urlpatterns = [
                                            default_template='sub-pages/_single.html',),name='detail')
     ], namespace='sub_page')),
     url(r'^activity-log/$', TemplateView.as_view(template_name='activity-log/index.html'), name='activity-log'),
+
+    url(r'^subscriptions/new/$', 'core.views.govdelivery_subscribe', name='govdelivery'),
+    url(r'^govdelivery-subscribe/', include([
+        url(r'^success/$', TemplateView.as_view(template_name='govdelivery-subscribe/success/index.html'), name='success'),
+        url(r'^error/$', TemplateView.as_view(template_name='govdelivery-subscribe/error/index.html'), name='user_error'),
+        url(r'^server-error/$', TemplateView.as_view(template_name='govdelivery-subscribe/server-error/index.html'), name='server_error'),
+
+      ], namespace='govdelivery'))
+
 ]
 
 from sheerlike import register_permalink
