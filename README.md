@@ -14,8 +14,7 @@ presently useful for any purpose.
 
 ## Dependencies
 
-Our primary target is Python 2.7 and Django 1.8. We intend to support Python
->=3.4 as well.
+Our primary target is Python 2.7 and Django 1.8. We intend to support Python >=3.4 as well.
 
 As currently configured, this repo expects that [cfgov-refresh](https://github.com/cfpb/cfgov-refresh)
 is checked out at the same level. 
