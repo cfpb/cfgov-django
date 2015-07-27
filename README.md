@@ -12,6 +12,10 @@ Right now, we're using this project to experiment with different configuration i
 
 Our initial target is Python 2.7 and Django 1.8.
 
+## Tests
+
+To run the test suite, simply run `tox` from the project root.
+
 ## Getting help
 
 If you have questions, concerns, bug reports, etc, please file an issue in this repository's Issue Tracker.

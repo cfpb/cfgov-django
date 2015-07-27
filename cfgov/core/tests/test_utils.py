@@ -21,5 +21,5 @@ class ExtractAnswersTest(unittest.TestCase):
                                'questionid_first': 'some_answer',
                                'questionid_another': 'another_answer'})
         result = extract_answers_from_request(request)
-        assert result == [('first', 'some_answer'),
-                          ('another', 'another_answer')]
+        assert sorted(result) == [('another', 'another_answer'),
+                                  ('first', 'some_answer')]
