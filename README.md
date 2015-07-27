@@ -20,6 +20,10 @@ Our primary target is Python 2.7 and Django 1.8. We intend to support Python
 As currently configured, this repo expects that [cfgov-refresh](https://github.com/cfpb/cfgov-refresh)
 is checked out at the same level. 
 
+## Tests
+
+To run the test suite, simply run `tox` from the project root.
+
 ## Getting help
 
 If you have questions, concerns, bug reports, etc, please file an issue in this
