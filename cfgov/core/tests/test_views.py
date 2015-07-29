@@ -1,21 +1,36 @@
 import json
+import sys
 from mock import call, patch
+
+if sys.version_info[0] < 3:
+    from urlparse import urlparse
+else:
+    from urllib.parse import urlparse
 
 from django.test import TestCase
 from django.core.urlresolvers import reverse
 
 
 class GovDeliverySubscribeTest(TestCase):
+    """
+    This TestCase mocks the following:
+    authenticated_session - removes the external govdelivery call
+    set_subscriber_topics - removes another external govdelivery call
+    assertEquals(urlparse(url).path, reverse(route_name)) was used over
+    assertRedirects because the former doesn't require the templates to exist
+    """
 
     def test_missing_email_address(self):
         response = self.client.post(reverse('govdelivery'),
                                     {'code': 'FAKE_CODE'})
-        self.assertRedirects(response, reverse('govdelivery:user_error'))
+        self.assertEquals(urlparse(response['Location']).path,
+                          reverse('govdelivery:user_error'))
 
     def test_missing_gd_code(self):
         response = self.client.post(reverse('govdelivery'),
                                     {'email': 'fake@email.com'})
-        self.assertRedirects(response, reverse('govdelivery:user_error'))
+        self.assertEquals(urlparse(response['Location']).path,
+                          reverse('govdelivery:user_error'))
 
     def test_missing_email_address_ajax(self):
         response = self.client.post(reverse('govdelivery'),
@@ -40,7 +55,8 @@ class GovDeliverySubscribeTest(TestCase):
                                      'email': 'fake@email.com'})
         mock_gd.assert_called_with('fake@email.com',
                                    ['FAKE_CODE'])
-        self.assertRedirects(response, reverse('govdelivery:success'))
+        self.assertEquals(urlparse(response['Location']).path,
+                          reverse('govdelivery:success'))
 
     @patch('govdelivery.api.authenticated_session')
     @patch('core.views.GovDelivery.set_subscriber_topics')
@@ -64,7 +80,8 @@ class GovDeliverySubscribeTest(TestCase):
                                      'email': 'fake@email.com'})
         mock_gd.assert_called_with('fake@email.com',
                                    ['FAKE_CODE'])
-        self.assertRedirects(response, reverse('govdelivery:server_error'))
+        self.assertEquals(urlparse(response['Location']).path,
+                          reverse('govdelivery:server_error'))
 
     @patch('govdelivery.api.authenticated_session')
     @patch('core.views.GovDelivery.set_subscriber_topics')
@@ -82,4 +99,4 @@ class GovDeliverySubscribeTest(TestCase):
         calls = [call('fake@email.com', 'batman', 'robin'),
                  call('fake@email.com', 'hello', 'goodbye')]
         mock_set_answers.assert_has_calls(calls, any_order=True)
-        assert mock_set_answers.call_count == 2
+        self.assertEqual(mock_set_answers.call_count, 2)
