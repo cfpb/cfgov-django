@@ -3,7 +3,7 @@ from django.views.generic.base import TemplateView
 from sheerlike.views.generic import SheerTemplateView
 from sheerlike.feeds import SheerlikeFeed
 
-from flapjack.views import LeadershipCalendarPDFView
+from flapjack.views import LeadershipCalendarPDFView, EventICSView
 
 
 urlpatterns = [
@@ -78,8 +78,9 @@ urlpatterns = [
             SheerTemplateView.as_view(doc_type='events',
                                       local_name='event',
                                       default_template='events/_single.html'),
-            name='event_archive')]
-        )),
+            name='event'),
+        url(r'^(?P<doc_id>[\w-]+)/ics/$', EventICSView.as_view())],
+        namespace='events')),
 
     url(r'^offices/', include([
         url(r'^(?P<doc_id>[\w-]+)/$',
