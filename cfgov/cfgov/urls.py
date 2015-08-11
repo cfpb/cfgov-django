@@ -2,6 +2,7 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from django.views.generic.base import RedirectView, TemplateView
 from sheerlike.views.generic import SheerTemplateView
+from sheerlike.feeds import SheerlikeFeed
 
 from flapjack.views import LeadershipCalendarPDFView
 
@@ -98,7 +99,8 @@ urlpatterns = [
         url(r'^error/$', TemplateView.as_view(template_name='govdelivery-subscribe/error/index.html'), name='user_error'),
         url(r'^server-error/$', TemplateView.as_view(template_name='govdelivery-subscribe/server-error/index.html'), name='server_error'),
 
-      ], namespace='govdelivery'))
+      ], namespace='govdelivery')),
+    url(r'^feed/(?P<doc_type>[\w-]+)/$', SheerlikeFeed(), name='feed'),
 
 ]
 
