@@ -1,8 +1,9 @@
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.views.generic.base import RedirectView, TemplateView
-
 from sheerlike.views.generic import SheerTemplateView
+
+from flapjack.views import LeadershipCalendarPDFView
 
 
 urlpatterns = [
@@ -42,6 +43,12 @@ urlpatterns = [
         url(r'^(?P<page_slug>[\w-]+)/$',
             SheerTemplateView.as_view(),
             name='page'),
+        url(r'^leadership-calendar/pdf/$',
+            LeadershipCalendarPDFView.as_view(),
+            name='leadership-calendar-pdf'),
+        url(r'^leadership-calendar/print/$',
+            SheerTemplateView.as_view(),
+            name='leadership-calendar-print')
             ], namespace='the-bureau')),
 
     url(r'^doing-business-with-us/', include([
