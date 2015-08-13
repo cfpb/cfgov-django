@@ -1,14 +1,18 @@
 import os
 
+import six
 import requests
 import icalendar
-from django.http import HttpResponse
-from core.lib.PDFreactor import *
 from django.views.generic.base import View, ContextMixin
 from django.http import HttpResponse, Http404
 from django.core.exceptions import ImproperlyConfigured
 from pytz import timezone
 from dateutil.parser import parse
+
+# PDFreactor's python wrapper doesn't support python 3, so neither can we for
+# now.
+if six.PY2:
+    from core.lib.PDFreactor import *
 
 
 class PDFGeneratorView(View):
@@ -161,7 +165,7 @@ class ICSView(ContextMixin, View):
 
         # Create any persons associated with the event
         if self.get_field_value('event_organizer_addr') and \
-            self.get_field_value('event_organizer'):
+                self.get_field_value('event_organizer'):
             organizer = icalendar.vCalAddress(
                 'MAILTO:' + self.get_field_value('event_organizer_addr'))
             organizer.params['cn'] = icalendar.vText(
