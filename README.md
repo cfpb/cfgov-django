@@ -1,3 +1,5 @@
+:warning: **DEPRECATED** :warning: – This project is no longer in use.
+
 ----
 
 # Django project for consumerfinance.gov
